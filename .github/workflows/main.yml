@@ -1,37 +1,11 @@
-name: Test
+name: Build and Deploy
 on:
-  pull_request:
   push:
-    branches-ignore:
-    - 'gh-pages'
+    branches:
+    - master
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout 🛎️
-      uses: actions/checkout@v2
-      with:
-        persist-credentials: false
-
-    - name: Setup 🔧
-      uses: actions/setup-node@v2
-      with:
-        node-version: 12
-        registry-url: https://registry.npmjs.org
-    - name: Restore NPM cache 🚮
-      uses: actions/cache@v2
-      with:
-        path: ~/.npm
-        key: dependency-cache-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: dependency-cache-
-    - name: Install ♻
-      run: npm install
-    - name: Test ✔
-      run: npm test
-
-  deploy:
-    needs: test
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout 🛎️
