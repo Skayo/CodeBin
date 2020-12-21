@@ -18,16 +18,10 @@ jobs:
       with:
         node-version: 12
         registry-url: https://registry.npmjs.org
-    - name: Restore NPM cache 🚮
-      uses: actions/cache@v2
-      with:
-        path: ~/.npm
-        key: dependency-cache-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: dependency-cache-
     - name: Install ♻
-      run: npm install
+      run: yarn
     - name: Build 🏗
-      run: npm build
+      run: yarn build
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@3.7.1
       with:
