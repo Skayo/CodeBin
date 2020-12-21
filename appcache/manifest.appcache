@@ -1,0 +1,17 @@
+CACHE MANIFEST
+#ver:63045cb9e470f5be6c5851254c30bbd1034f6296
+#plugin:4.9.0
+
+CACHE:
+/
+/client.js
+/client.css
+/vendor.js
+/vendor.css
+/editor-page.chunk.js
+
+NETWORK:
+*
+
+FALLBACK:
+/ /
