@@ -1,5 +1,7 @@
 # CodePan
 
+![Build and Deploy](https://github.com/Skayo/CodeBin/workflows/Build%20and%20Deploy/badge.svg)
+
 Open-Source clone of JSBin with offline support and no back-end
 
 [OPEN WEBSITE](https://bin.skayo.dev)
