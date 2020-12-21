@@ -1,11 +1,11 @@
 <template>
   <div
-    :class="{ 'active-pan': isActivePan }"
-    :style="style"
     class="html-pan"
-    @click="setActivePan('html')">
+    :class="{ 'active-pan': isActivePan }"
+    @click="setActivePan('html')"
+    :style="style">
     <div class="pan-head">
-      <el-dropdown trigger="click" @command="setTransformer">
+      <el-dropdown @command="setTransformer" trigger="click">
         <span class="el-dropdown-link">
           {{ humanlizedTransformerName }} <i class="el-icon-caret-bottom el-icon--right"></i>
         </span>
@@ -16,21 +16,21 @@
         </el-dropdown-menu>
       </el-dropdown>
 
-      <compiled-code-switcher v-if="html.code" type="html"></compiled-code-switcher>
+      <compiled-code-switcher type="html" v-if="html.code"></compiled-code-switcher>
     </div>
     <textarea ref="editor">{{ html.code }}</textarea>
-    <pan-resizer :enable="enableResizer" pan="html" />
+    <pan-resizer pan="html" :enable="enableResizer" />
   </div>
 </template>
 
 <script>
-  import createPan from '@/utils/create-pan';
+  import createPan from '@/utils/create-pan'
 
   export default createPan({
-    name:   'html',
+    name: 'html',
     editor: {
-      mode:          'htmlmixed',
-      autoCloseTags: true,
-    },
-  });
+      mode: 'htmlmixed',
+      autoCloseTags: true
+    }
+  })
 </script>
