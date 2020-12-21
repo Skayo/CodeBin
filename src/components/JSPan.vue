@@ -1,11 +1,11 @@
 <template>
   <div
-    class="js-pan"
     :class="{ 'active-pan': isActivePan }"
-    @click="setActivePan('js')"
-    :style="style">
+    :style="style"
+    class="js-pan"
+    @click="setActivePan('js')">
     <div class="pan-head">
-      <el-dropdown @command="setTransformer" trigger="click">
+      <el-dropdown trigger="click" @command="setTransformer">
         <span class="el-dropdown-link">
           {{ humanlizedTransformerName }} <i class="el-icon-caret-bottom el-icon--right"></i>
         </span>
@@ -20,23 +20,23 @@
         </el-dropdown-menu>
       </el-dropdown>
       <div class="pan-head-right">
-        <compiled-code-switcher type="js" v-if="js.code"></compiled-code-switcher>
+        <compiled-code-switcher v-if="js.code" type="js"></compiled-code-switcher>
       </div>
     </div>
     <textarea ref="editor">{{ js.code }}</textarea>
-    <pan-resizer pan="js" :enable="enableResizer" />
+    <pan-resizer :enable="enableResizer" pan="js" />
   </div>
 </template>
 
 <script>
-  import createPan from '@/utils/create-pan'
+  import createPan from '@/utils/create-pan';
 
   export default createPan({
-    name: 'js',
+    name:   'js',
     editor: {
-      mode: 'jsx',
-      autofocus: true,
-      autoCloseBrackets: true
-    }
-  })
+      mode:              'jsx',
+      autofocus:         true,
+      autoCloseBrackets: true,
+    },
+  });
 </script>

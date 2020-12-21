@@ -1,11 +1,11 @@
 <template>
   <div
-    class="css-pan"
     :class="{ 'active-pan': isActivePan }"
-    @click="setActivePan('css')"
-    :style="style">
+    :style="style"
+    class="css-pan"
+    @click="setActivePan('css')">
     <div class="pan-head">
-      <el-dropdown @command="setTransformer" trigger="click">
+      <el-dropdown trigger="click" @command="setTransformer">
         <span class="el-dropdown-link">
           {{ humanlizedTransformerName }} <i class="el-icon-caret-bottom el-icon--right"></i>
         </span>
@@ -19,22 +19,22 @@
         </el-dropdown-menu>
       </el-dropdown>
       <div class="pan-head-right">
-        <compiled-code-switcher type="css" v-if="css.code"></compiled-code-switcher>
+        <compiled-code-switcher v-if="css.code" type="css"></compiled-code-switcher>
       </div>
     </div>
     <textarea ref="editor">{{ css.code }}</textarea>
-    <pan-resizer pan="css" :enable="enableResizer" />
+    <pan-resizer :enable="enableResizer" pan="css" />
   </div>
 </template>
 
 <script>
-import createPan from '@/utils/create-pan'
+  import createPan from '@/utils/create-pan';
 
-export default createPan({
-  name: 'css',
-  editor: {
-    mode: 'css',
-    autoCloseBrackets: true
-  }
-})
+  export default createPan({
+    name:   'css',
+    editor: {
+      mode:              'css',
+      autoCloseBrackets: true,
+    },
+  });
 </script>
