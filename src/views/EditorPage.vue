@@ -33,10 +33,6 @@
       <console-pan class="pan" v-show="isVisible('console')" />
       <output-pan class="pan" v-show="isVisible('output')" />
     </div>
-
-    <div ref="sponsor" class="sponsor">
-      <a href="https://github.com/sponsors/egoist" target="_blank" rel="noopener nofollow">❤️ Sponsor me on GitHub to support the rewrite of CodePan!</a>
-    </div>
   </div>
 </template>
 
@@ -255,15 +251,4 @@ export default {
   line-height: 40px !important
   z-index: 9999 !important
   padding: 0 10px !important
-
-.sponsor
-  height: 40px
-  line-height 40px
-  border-top: 1px solid #ccc
-  text-align: center
-  padding: 0 10px
-  a
-    text-decoration: none
-    &:hover
-      text-decoration: underline
 </style>
