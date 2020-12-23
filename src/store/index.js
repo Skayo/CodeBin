@@ -13,9 +13,9 @@ import {
   loadTypescript,
   loadStylus
 } from '@/utils/transformer'
+import { getTransformerByFileExt } from '@/utils'
 import progress from 'nprogress'
 import api from '@/utils/github-api'
-import req from 'reqjs'
 import Event from '@/utils/event'
 
 Vue.use(Vuex)
@@ -41,12 +41,6 @@ const emptyPans = () => ({
     transformer: 'html'
   }
 })
-
-const getFileNameByLang = {
-  html: 'index.html',
-  js: 'script.js',
-  css: 'style.css'
-}
 
 // Load entries of all boilerplates
 const boilerplates = {
@@ -228,28 +222,44 @@ const store = new Vuex.Store({
       progress.done()
     },
     async setGist({ commit, dispatch, state }, id) {
-      const data = await api(`gists/${id}`, state.githubToken, progress.done)
+      const data = await api({
+        endpoint: `gists/${id}`,
+        token: state.githubToken,
+        errCb: progress.done
+      })
       const files = data.files
 
       if (!files) return
 
-      const main = {
-        html: {},
-        css: {},
-        js: {},
-        ...(files['index.js'] ? req(files['index.js'].content) : {}),
-        ...(files['codepan.js'] ? req(files['codepan.js'].content) : {}),
-        ...(files['codepan.json'] ? JSON.parse(files['codepan.json'].content) : {})
-      }
-      for (const type of ['html', 'js', 'css']) {
-        if (!main[type].code) {
-          const filename = main[type].filename || getFileNameByLang[type]
-          if (files[filename]) {
-            main[type].code = files[filename].content
-          }
+      const { showPans, activePan } = JSON.parse(files['codebin.json'].content);
+
+      let boilerplate = {
+        ...emptyPans(),
+        showPans,
+        activePan
+      };
+
+      for (const { filename, content } of Object.values(files)) {
+        const [file, ext] = filename.split('.');
+
+        const transformer = getTransformerByFileExt(ext);
+        if (!transformer) continue;
+
+        const pan = {
+          transformer: getTransformerByFileExt(ext),
+          code: content
+        };
+
+        if (file === 'index') {
+          boilerplate.html = pan;
+        } else if (file === 'style') {
+          boilerplate.css = pan;
+        } else if (file === 'main') {
+          boilerplate.js = pan;
         }
       }
-      await dispatch('setBoilerplate', main)
+
+      await dispatch('setBoilerplate', boilerplate)
 
       delete data.files
       commit('SET_GIST_META', data)
@@ -259,7 +269,10 @@ const store = new Vuex.Store({
       let userMeta = {}
       if (token) {
         localStorage.setItem('codebin:gh-token', token)
-        userMeta = await api('user', token)
+        userMeta = await api({
+          endpoint: 'user',
+          token
+        })
       } else {
         localStorage.removeItem('codebin:gh-token')
       }

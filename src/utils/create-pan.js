@@ -6,7 +6,7 @@ import CompiledCodeSwitcher from '@/components/CompiledCodeSwitcher.vue'
 import createEditor from '@/utils/create-editor'
 import Event from '@/utils/event'
 import panPosition from '@/utils/pan-position'
-import { hasNextPan, getHumanlizedTransformerName, getEditorModeByTransfomer } from '@/utils'
+import { hasNextPan, getHumanlizedTransformerName, getEditorModeByTransformer } from '@/utils'
 
 export default ({ name, editor, components } = {}) => {
   return {
@@ -42,7 +42,7 @@ export default ({ name, editor, components } = {}) => {
         }
       },
       [`${name}.transformer`](val) {
-        const mode = getEditorModeByTransfomer(val)
+        const mode = getEditorModeByTransformer(val)
         this.editor.setOption('mode', mode)
       },
       [`${name}.code`]() {

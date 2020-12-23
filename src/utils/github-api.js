@@ -1,18 +1,18 @@
 import axios from 'axios'
 import notie from 'notie'
 
-export default async function (endpoint, token, errCb = () => {}) {
-  const headers = {
-    // eslint-disable-next-line camelcase
-    Authorization: 'token ' + token
+export default async function({ method = 'GET', endpoint, token, data, errCb = () => {}}) {
+  let headers = {};
+  if (token) {
+    headers.Authorization = 'token ' + token;
   }
 
   try {
-    const data = await axios.get(`https://api.github.com/${endpoint}`, {
-      headers
+    return await axios(`https://api.github.com/${endpoint}`, {
+      method,
+      headers,
+      data
     }).then(res => res.data)
-
-    return data
   } catch (err) {
     errCb()
     if (err.response) {

@@ -24,6 +24,7 @@ import createIframe from '@/utils/iframe'
 import Event from '@/utils/event'
 import panPosition from '@/utils/pan-position'
 import getScripts from '@/utils/get-scripts'
+import api from '@/utils/github-api'
 import proxyConsole from '!raw-loader!babel-loader?presets[]=babili&-babelrc!buble-loader!@/utils/proxy-console'
 import SvgIcon from './SvgIcon.vue'
 
@@ -51,28 +52,28 @@ const createElement = tag => (content = '', attrs = {}) => {
 
 const makeGist = (data, { showPans, activePan }) => {
   const files = {}
-  
-  files['codepan.json'] = {
+
+  if (data.html.code)
+    files['index.' + getFileExtByTransformer(data.html.transformer)] = {
+      content: data.html.code
+    }
+
+  if (data.css.code)
+    files['style.' + getFileExtByTransformer(data.css.transformer)] = {
+      content: data.css.code
+    }
+
+  if (data.js.code)
+    files['main.' + getFileExtByTransformer(data.js.transformer)] = {
+      content: data.js.code
+    }
+
+  files['codebin.json'] = {
     content: JSON.stringify({
       showPans,
       activePan
     })
   }
-  
-  if (data.js.code)
-    files['main.' + getFileExtByTransformer(data.js.transformer)] = {
-      content: data.js.code
-    }
-    
-  if (data.css.code)
-    files['style.' + getFileExtByTransformer(data.css.transformer)] = {
-      content: data.css.code
-    }
-    
-  if (data.html.code)
-    files['index.' + getFileExtByTransformer(data.html.transformer)] = {
-      content: data.html.code
-    }
 
   return files
 }
@@ -261,63 +262,60 @@ export default {
      */
     async saveGist({ token, saveNew } = {}) {
       this.editorSaving()
-      try {
-        const files = makeGist(
-          {
-            js: this.js,
-            css: this.css,
-            html: this.html
-          },
-          {
-            showPans: this.visiblePans,
-            activePan: this.activePan
-          }
-        )
-        const headers = {}
-        if (token) {
-          // eslint-disable-next-line camelcase
-          headers.Authorization = 'token ' + token
+      let files = makeGist(
+        {
+          js: this.js,
+          css: this.css,
+          html: this.html
+        },
+        {
+          showPans: this.visiblePans,
+          activePan: this.activePan
         }
-        const shouldUpdateGist = this.canUpdateGist && !saveNew
-        const url = `https://api.github.com/gists${
-          shouldUpdateGist ?
-          `/${this.$route.params.gist}` :
-          ''
-        }`
-        const method = shouldUpdateGist ? 'PATCH' : 'POST'
-        const { data } = await axios(url, {
-          headers,
-          method,
-          data: {
-            public: false,
-            files
-          }
+      )
+      const shouldUpdateGist = this.canUpdateGist && !saveNew && this.$route.params.gist
+      if (shouldUpdateGist) {
+        const { files: oldFiles } = await api({
+          endpoint: `gists/${this.$route.params.gist}`,
+          token
         })
+        if (!oldFiles) this.editorSavingError();
 
-        if (shouldUpdateGist) {
-          this.editorSaved()
-        } else {
-          this.$router.push(`/gist/${data.id}`)
-          if (token) {
-            // Update gist id in the description of newly created gist
-            axios(`https://api.github.com/gists/${data.id}`, {
-              method: 'PATCH',
-              headers,
-              data: {
-                description: `Try it online! https://bin.skayo.dev/gist/${
-                  data.id
-                }`
-              }
-            }).catch(err => console.log(err))
-          }
+        Object.keys(oldFiles).forEach(key => {
+          if (!files.hasOwnProperty(key)) files[key] = null; // Remove old and unused files
+        });
+      }
+      const endpoint = `gists${
+        shouldUpdateGist ?
+        `/${this.$route.params.gist}` :
+        ''
+      }`
+      const method = shouldUpdateGist ? 'PATCH' : 'POST'
+      const data = await api({
+        method,
+        endpoint,
+        token,
+        data: {
+          public: false,
+          files
         }
-      } catch (err) {
-        this.editorSavingError()
-        if (err.response) {
-          notie.alert({
-            type: 'error',
-            text: err.response.data.message
-          })
+      })
+      if (!data) this.editorSavingError();
+
+      if (shouldUpdateGist) {
+        this.editorSaved()
+      } else {
+        this.$router.push(`/gist/${data.id}`)
+        if (token) {
+          // Update gist id in the description of newly created gist
+          api({
+            method: 'PATCH',
+            endpoint: `gists/${data.id}`,
+            token,
+            data: {
+              description: `Try it online! https://bin.skayo.dev/gist/${data.id}`
+            }
+          }).catch(err => console.error(err))
         }
       }
     }
