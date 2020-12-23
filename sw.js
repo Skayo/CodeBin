@@ -68,8 +68,8 @@ var __wpo = {
       "/vendor/sass/sass.js",
       "/vendor/stylus.js",
       "/vendor/reason/refmt.js",
-      "/vendor/sass/sass.worker.js",
-      "/vendor/reason/bs.js"
+      "/vendor/reason/bs.js",
+      "/vendor/sass/sass.worker.js"
     ]
   },
   "externals": [
@@ -85,7 +85,7 @@ var __wpo = {
     "9f3d9719ac561f7e60d63ca45d295a6a4787cad7": "/boilerplate-vue-jsx.chunk.js",
     "fa69cb87b5291d6bc995fdb5d49b9cceca0e281c": "/codemirror-mode.chunk.js",
     "68b8379076d25e4ce1a46d08956cbf7e40860e63": "/babel-stuffs.chunk.js",
-    "fc7f0e12a8c66d3726a43b43ee3ba0b179262014": "/editor-page.chunk.js",
+    "b7a86fa03594563455cb3e92c4cf9b661390faf3": "/editor-page.chunk.js",
     "2812bfbed0073c9f768bc8eba978ab879a99638d": "/codemirror-mode-pug.chunk.js",
     "7fddfffd93b8017da5569ef6afe2e038c88f26d2": "/5.chunk.js",
     "1aa2825b791bb14a8992f6caa05c42d3340625a0": "/not-found-page.chunk.js",
@@ -113,7 +113,7 @@ var __wpo = {
     "3989e1ae9d39c2c441b60089b74ef8cca6ae765b": "/client.js",
     "ca41d25778a026382f7b320ab3dd734ec8dab328": "/codemirror-emmet.chunk.js",
     "c3040e588f6c926951cec2da38e64bf397a9c46b": "/manifest.js",
-    "9b135415e4c06bba417f2341ba6ecb95121d47ce": "/client.css",
+    "e9cf29a002c8c9f52f743e3bc4c279c6f3406e5b": "/client.css",
     "ba3a47f137b71296af74b4cf71ab8c0f1f982c3f": "/vendor.css",
     "fa82fe12cd5765d20e89b533b2b97d5bdafbdcbd": "/_redirects",
     "125db24a90777d2aa178c299eeea197c69edc386": "/CNAME",
@@ -137,15 +137,15 @@ var __wpo = {
     "d304b1490546efddf3c57bc44e937d2b05f642f0": "/vendor/sass/sass.js",
     "b4bf329f9ffabd9d1856b63df7fcf588527a3d3d": "/vendor/stylus.js",
     "8521fb018c3a2fecec3b6e4940fc2a62ee7f65cd": "/vendor/reason/refmt.js",
-    "843777bf57a30c1e29caf7c6e16e2047bd3cef4f": "/vendor/sass/sass.worker.js",
     "a34b5c810dd6e46ba070d1e33c6daa4c70730cc5": "/vendor/reason/bs.js",
+    "843777bf57a30c1e29caf7c6e16e2047bd3cef4f": "/vendor/sass/sass.worker.js",
     "b27fcb55d26a7513a88714fe7f99ac7a52ea4165": "/"
   },
   "navigateFallbackURL": "/",
   "navigateFallbackForRedirects": true,
   "strategy": "changed",
   "responseStrategy": "cache-first",
-  "version": "8846fdab9fe521102fcf017fe68a8305f82a3ec5",
+  "version": "abbd0de243f821f93037b38f67eaab68c5242c45",
   "name": "webpack-offline",
   "pluginVersion": "4.9.0",
   "relativePaths": false
