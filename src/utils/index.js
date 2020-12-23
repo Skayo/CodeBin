@@ -22,11 +22,11 @@ const transformers = {
   stylus:           ['Stylus',         'text/x-styl',     'styl']
 }
 
-export const getHumanlizedTransformerName = transformer => transformers[transformer][0] || transformer
+export const getHumanlizedTransformerName = transformer => transformers[transformer] ? transformers[transformer][0] : transformer
 
-export const getEditorModeByTransfomer = transformer => transformers[transformer][1]
+export const getEditorModeByTransformer = transformer => transformers[transformer] ? transformers[transformer][1] : undefined
 
-export const getFileExtByTransformer = transformer => transformers[transformer][2]
+export const getFileExtByTransformer = transformer => transformers[transformer] ? transformers[transformer][2] : undefined
 
 export const getTransformerByFileExt = fileExt => Object.keys(transformers).find(transformer => transformers[transformer][2] === fileExt)
 

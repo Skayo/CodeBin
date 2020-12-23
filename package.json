@@ -11,6 +11,7 @@
     "lint": "xo",
     "dev": "poi",
     "build": "poi build",
+    "postbuild": "cp dist/index.html dist/404.html",
     "report": "poi build --bundle-report"
   },
   "devDependencies": {
