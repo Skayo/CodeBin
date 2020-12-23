@@ -160,7 +160,7 @@
             </div>
           </el-dropdown-item>
           <el-dropdown-item style="padding: 0;">
-            <a class="el-dropdown-menu__item fake-anchor" target="_blank" href="https://github.com/egoist/codepan"><link2-icon></link2-icon> Source Code</a>
+            <a class="el-dropdown-menu__item fake-anchor" target="_blank" href="https://github.com/Skayo/CodeBin"><link2-icon></link2-icon> Source Code</a>
           </el-dropdown-item>
           <el-dropdown-item style="padding: 0;">
             <a class="el-dropdown-menu__item fake-anchor" target="_blank" href="https://twitter.com/Skayo_"><twitter-icon></twitter-icon> Follow me on Twitter</a>
@@ -169,7 +169,7 @@
             <a
               target="_blank"
               class="el-dropdown-menu__item fake-anchor"
-              :href="`https://github.com/egoist/codepan/commit/${latestCommit}`">
+              :href="`https://github.com/Skayo/CodeBin/commit/${latestCommit}`">
               <info-icon></info-icon>
               {{ version }}
             </a>
@@ -177,13 +177,13 @@
         </el-dropdown-menu>
       </el-dropdown>
       <a
-        title="Edit on CodePan"
+        title="Edit on CodeBin"
         v-tippy
         v-if="inIframe"
         class="home-header-right-item"
         :href="url"
         target="_blank">
-        <img height="30" src="/favicon-180.png" alt="codepan">
+        <img height="30" src="/favicon-180.png" alt="CodeBin">
       </a>
     </div>
   </header>

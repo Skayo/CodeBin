@@ -121,7 +121,7 @@ export default {
   mounted() {
     // Tell the parent window we're ready!
     if (inIframe) {
-      window.parent.postMessage({ type: 'codepan-ready' }, '*')
+      window.parent.postMessage({ type: 'codebin-ready' }, '*')
     }
 
     window.addEventListener('storage', this.handleStorageChanged)
@@ -155,7 +155,7 @@ export default {
       return this.visiblePans.indexOf(pan) !== -1
     },
     handleStorageChanged(e) {
-      if (e.key === 'codepan:gh-token' && e.newValue) {
+      if (e.key === 'codebin:gh-token' && e.newValue) {
         this.$store.dispatch('setGitHubToken', e.newValue)
         if (inIframe) {
           notie.confirm({

@@ -9,7 +9,7 @@
     )
   })
   window.addEventListener('click', () => {
-    window.parent.postMessage({ type: 'codepan-make-output-active' }, '*')
+    window.parent.postMessage({ type: 'codebin-make-output-active' }, '*')
   })
 
   /**
@@ -256,7 +256,7 @@
         // Post up with method and the arguments
         window.parent.postMessage(
           {
-            type: 'codepan-console',
+            type: 'codebin-console',
             method: method === '_raw' ? originalArgs.shift() : method,
             args: method === '_raw' ? args.slice(1) : args
           },

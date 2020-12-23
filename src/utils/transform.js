@@ -111,7 +111,7 @@ export async function css({ code, transformer }) {
       })
     case 'stylus':
       return new Promise((resolve, reject) => {
-        window.stylus.render(code, { filename: 'codepan.styl' }, (err, css) => {
+        window.stylus.render(code, { filename: 'codebin.styl' }, (err, css) => {
           if (err) return reject(err)
           resolve(css)
         })

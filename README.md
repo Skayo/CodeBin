@@ -1,4 +1,4 @@
-# CodePan
+# CodeBin
 
 ![Build and Deploy](https://github.com/Skayo/CodeBin/workflows/Build%20and%20Deploy/badge.svg)
 

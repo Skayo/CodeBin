@@ -70,9 +70,9 @@ const store = new Vuex.Store({
     visiblePans: ['html', 'js', 'output'],
     activePan: 'js',
     autoRun: false,
-    githubToken: localStorage.getItem('codepan:gh-token') || '',
+    githubToken: localStorage.getItem('codebin:gh-token') || '',
     gistMeta: {},
-    userMeta: JSON.parse(localStorage.getItem('codepan:user-meta')) || {},
+    userMeta: JSON.parse(localStorage.getItem('codebin:user-meta')) || {},
     editorStatus: 'saved',
     iframeStatus: null,
     transforming: false
@@ -258,16 +258,16 @@ const store = new Vuex.Store({
       commit('SET_GITHUB_TOKEN', token)
       let userMeta = {}
       if (token) {
-        localStorage.setItem('codepan:gh-token', token)
+        localStorage.setItem('codebin:gh-token', token)
         userMeta = await api('user', token)
       } else {
-        localStorage.removeItem('codepan:gh-token')
+        localStorage.removeItem('codebin:gh-token')
       }
       commit('SET_USER_META', userMeta)
       if (Object.keys(userMeta).length > 0) {
-        localStorage.setItem('codepan:user-meta', JSON.stringify(userMeta))
+        localStorage.setItem('codebin:user-meta', JSON.stringify(userMeta))
       } else {
-        localStorage.removeItem('codepan:user-meta')
+        localStorage.removeItem('codebin:user-meta')
       }
     },
     editorSaved({ commit }) {

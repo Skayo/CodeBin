@@ -149,15 +149,15 @@ export default {
       if (data.type === 'iframe-error') {
         this.addLog({ type: 'error', message: data.message.trim() })
         this.setIframeStatus('error')
-      } else if (data.type === 'codepan-console') {
+      } else if (data.type === 'codebin-console') {
         if (data.method === 'clear') {
           this.clearLogs()
         } else {
           this.addLog({ type: data.method, message: data.args.join('') })
         }
-      } else if (data.type === 'codepan-make-output-active') {
+      } else if (data.type === 'codebin-make-output-active') {
         this.setActivePan('output')
-      } else if (data.type === 'codepan-set-boilerplate' && data.boilerplate) {
+      } else if (data.type === 'codebin-set-boilerplate' && data.boilerplate) {
         await this.setBoilerplate(JSON.parse(data.boilerplate))
         Event.$emit('refresh-editor')
       } else if (data.type === 'iframe-success') {
@@ -211,8 +211,8 @@ export default {
             window.Vue.config.productionTip = false;
           }
           console.clear();
-          document.addEventListener('DOMContentLoaded', __executeCodePan);
-          function __executeCodePan(){
+          document.addEventListener('DOMContentLoaded', __executeCodeBin);
+          function __executeCodeBin(){
             window.parent.postMessage({ type: 'iframe-success' }, '*');
             let script = document.createElement('script');
             script.innerHTML = ${JSON.stringify(js)};
@@ -229,7 +229,7 @@ export default {
       await this.transform(false)
 
       const headStyle = createElement('style')(css)
-      const codePanRuntime = createElement('script')(`
+      const codeBinRuntime = createElement('script')(`
         window.process = window.process || { env: { NODE_ENV: 'development' } }
         `) +
         scripts
@@ -242,7 +242,7 @@ export default {
           )
           .join('\n') +
         createElement('script')(proxyConsole)
-      const head = headStyle + codePanRuntime
+      const head = headStyle + codeBinRuntime
 
       const body =
         html +
@@ -304,7 +304,7 @@ export default {
               method: 'PATCH',
               headers,
               data: {
-                description: `Try it online! https://codepan.net/gist/${
+                description: `Try it online! https://bin.skayo.dev/gist/${
                   data.id
                 }`
               }
