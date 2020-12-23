@@ -67,9 +67,9 @@ var __wpo = {
       "/vendor/coffeescript-2.js",
       "/vendor/sass/sass.js",
       "/vendor/stylus.js",
-      "/vendor/reason/refmt.js",
       "/vendor/reason/bs.js",
-      "/vendor/sass/sass.worker.js"
+      "/vendor/sass/sass.worker.js",
+      "/vendor/reason/refmt.js"
     ]
   },
   "externals": [
@@ -85,7 +85,7 @@ var __wpo = {
     "97d13ac5d323421e8dbcbf95f598567dfdc8ecf9": "/boilerplate-vue-jsx.chunk.js",
     "fa69cb87b5291d6bc995fdb5d49b9cceca0e281c": "/codemirror-mode.chunk.js",
     "68b8379076d25e4ce1a46d08956cbf7e40860e63": "/babel-stuffs.chunk.js",
-    "ed858d43c52021a3b78f2bb72f385b1c8537eda5": "/editor-page.chunk.js",
+    "8ad68385704dc23f98b01ab4052fa455e3c2c9a3": "/editor-page.chunk.js",
     "5c22df922d02c22d941904e1f7d6bc0f030e4053": "/codemirror-mode-pug.chunk.js",
     "c8ad49987d469cb6923eb059810883b3a3b09683": "/5.chunk.js",
     "7490f7080d95d73a5bf8fc299cd758a9cb3e6c2a": "/not-found-page.chunk.js",
@@ -105,7 +105,7 @@ var __wpo = {
     "df6f5a3204c3d4b1c9e60f71da7897880e224c46": "/20.chunk.js",
     "16720dcc75b326f531709609a0191edf2465ea28": "/21.chunk.js",
     "686d6eca6aa55376240672b64c368c489995b73a": "/22.chunk.js",
-    "38159c5728404fd37081e0619600cea075d04d7e": "/23.chunk.js",
+    "3cbbbe36b81f6c2926e56d9ebeb4db7a22a7ec8e": "/23.chunk.js",
     "484f35007516258f8be83889f52b8d5043ef0709": "/24.chunk.js",
     "a175a474113a00b88fb87ec24dc36258ef40be94": "/25.chunk.js",
     "fb65c0b10c3144b4e62e6f96dd5284669b006a7c": "/26.chunk.js",
@@ -136,16 +136,16 @@ var __wpo = {
     "cf371f4ae613662108da66799da14cfd76155e78": "/vendor/coffeescript-2.js",
     "d304b1490546efddf3c57bc44e937d2b05f642f0": "/vendor/sass/sass.js",
     "b4bf329f9ffabd9d1856b63df7fcf588527a3d3d": "/vendor/stylus.js",
-    "8521fb018c3a2fecec3b6e4940fc2a62ee7f65cd": "/vendor/reason/refmt.js",
     "a34b5c810dd6e46ba070d1e33c6daa4c70730cc5": "/vendor/reason/bs.js",
     "843777bf57a30c1e29caf7c6e16e2047bd3cef4f": "/vendor/sass/sass.worker.js",
+    "8521fb018c3a2fecec3b6e4940fc2a62ee7f65cd": "/vendor/reason/refmt.js",
     "b27fcb55d26a7513a88714fe7f99ac7a52ea4165": "/"
   },
   "navigateFallbackURL": "/",
   "navigateFallbackForRedirects": true,
   "strategy": "changed",
   "responseStrategy": "cache-first",
-  "version": "a0cd43df1d8d8de1a102895e6f81570ccd382214",
+  "version": "3b341058f4ea91549cf3f215a0fd1103c34df5a8",
   "name": "webpack-offline",
   "pluginVersion": "4.9.0",
   "relativePaths": false
