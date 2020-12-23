@@ -1,6 +1,6 @@
 {
-	"name": "CodePan",
-  "short_name": "CodePan",
+	"name": "CodeBin",
+  "short_name": "CodeBin",
   "start_url": "./",
   "display": "standalone",
   "orientation": "portrait",
