@@ -16,7 +16,7 @@
 
 <script>
 import { mapState, mapActions, mapGetters } from 'vuex'
-import { getHumanlizedTransformerName } from '@/utils'
+import { getHumanlizedTransformerName, getFileExtByTransformer } from '@/utils'
 import axios from 'axios'
 import notie from 'notie'
 import * as transform from '@/utils/transform'
@@ -51,16 +51,28 @@ const createElement = tag => (content = '', attrs = {}) => {
 
 const makeGist = (data, { showPans, activePan }) => {
   const files = {}
-
-  const manifest = {
-    ...data,
-    showPans,
-    activePan
-  }
-
+  
   files['codepan.json'] = {
-    content: JSON.stringify(manifest)
+    content: JSON.stringify({
+      showPans,
+      activePan
+    })
   }
+  
+  if (data.js.code)
+    files['main.' + getFileExtByTransformer(data.js.transformer)] = {
+      content: data.js.code
+    }
+    
+  if (data.css.code)
+    files['style.' + getFileExtByTransformer(data.css.transformer)] = {
+      content: data.css.code
+    }
+    
+  if (data.html.code)
+    files['index.' + getFileExtByTransformer(data.html.transformer)] = {
+      content: data.html.code
+    }
 
   return files
 }
