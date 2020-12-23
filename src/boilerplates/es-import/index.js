@@ -1,5 +1,5 @@
 export default async () => {
-  const jsCode = await import('!raw-loader!./codepan.js')
+  const jsCode = await import('!raw-loader!./codebin.js')
 
   return {
     js: {

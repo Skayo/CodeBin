@@ -22,3 +22,8 @@ Sets the desired layout of open pans
 - `headless=false|true`
 
 Doesnt show ads, menu or pan header titles
+
+
+# Credit
+
+Thanks to [egoist](https://github.com/egoist) for the original project called [CodePan](https://github.com/egoist/codepan) 

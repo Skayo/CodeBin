@@ -1,7 +1,7 @@
 export default async () => {
   const [htmlCode, jsCode] = await Promise.all([
-    import('!raw-loader!./codepan.html'),
-    import('!raw-loader!./codepan.js')
+    import('!raw-loader!./codebin.html'),
+    import('!raw-loader!./codebin.js')
   ])
 
   return {
