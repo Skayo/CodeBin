@@ -22,12 +22,12 @@ const transformers = {
   stylus:           ['Stylus',         'text/x-styl',     'styl']
 }
 
-const getHumanlizedTransformerName = transformer => transformers[transformer][0] || transformer
+export const getHumanlizedTransformerName = transformer => transformers[transformer][0] || transformer
 
-const getEditorModeByTransfomer = transformer => transformers[transformer][1]
+export const getEditorModeByTransfomer = transformer => transformers[transformer][1]
 
-const getFileExtByTransformer = transformer => transformers[transformer][2]
+export const getFileExtByTransformer = transformer => transformers[transformer][2]
 
-const getTransformerByFileExt = fileExt => Object.keys(transformers).find(transformer => transformers[transformer][2] === fileExt)
+export const getTransformerByFileExt = fileExt => Object.keys(transformers).find(transformer => transformers[transformer][2] === fileExt)
 
 export const inIframe = window.self !== window.top
